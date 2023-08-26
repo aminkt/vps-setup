@@ -52,7 +52,7 @@ echo "Cloadflare api key IS $CF_Key"
 $ACME_COMMAND --set-default-ca --server letsencrypt
 echo "ACME is configured!"
 
-$ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf --debug --force
+$ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf --debug 2 --force
 
 mkdir -p $CERT_DIRECTORY
 
