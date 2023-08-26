@@ -1,0 +1,41 @@
+
+# IDEs project files
+.idea
+.vscode
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# Mac DS_Store Files
+.DS_Store
+
+# composer vendor dir
+/vendor
+
+# composer itself is not needed
+composer.phar
+composer.lock
+
+# phpunit itself is not needed
+phpunit.phar
+
+# local phpunit config
+/phpunit.xml
+tests/_output/*
+tests/_support/_generated
+.phpunit.cache
+
+# vagrant runtime
+.vagrant
+
+# environment variables
+*.env
+
+debug-data
+sources/infrastructure/tests/tmp/
