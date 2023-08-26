@@ -1,4 +1,11 @@
 #! /bin/bash
+
+if [ -z "$1" ]
+then
+      "Domain is empty."
+      exit
+fi
+
 DOMAIN_NAME=$1
 CERT_DIRECTORY=/etc/nginx/letsencrypt/live/$DOMAIN_NAME
 NGINX_CONFIG_FILE=/etc/nginx/conf.d/ssl.conf
