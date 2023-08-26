@@ -32,22 +32,22 @@ fi
 
 if [ ! -f .ssl_acme.env ]
 then
-read -p 'Cloadflare emil key: ' cloadflare_email
-read -sp 'Cloadflare api key: ' cloadflare_key
+read -p 'Cloadflare email: ' cloadflare_email
+read -s 'Cloadflare apiKey: ' cloadflare_key
 
 cat << EOF > .ssl_acme.env
 CLOAD_FLARE_KEY=$cloadflare_key
-CLOAD_FLARE_EMAILl=$cloadflare_email
+CLOAD_FLARE_EMAIL=$cloadflare_email
 EOF
 fi
 
 source .ssl_acme.env
 
 export CF_Key=${CLOAD_FLARE_KEY}
-export CF_Email=${CLOAD_FLARE_EMAILl}
+export CF_Email=${CLOAD_FLARE_EMAIL}
 
-echo "Cloadflare mail IS $CF_Key"
-echo "Cloadflare api key IS $CF_Email"
+echo "Cloadflare mail IS $CF_EMail"
+echo "Cloadflare api key IS $CF_Key"
 
 $ACME_COMMAND --set-default-ca --server letsencrypt
 echo "ACME is configured!"
