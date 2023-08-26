@@ -2,12 +2,14 @@
 DOMAIN_NAME=$1
 CERT_DIRECTORY=/etc/nginx/letsencrypt/live/$DOMAIN_NAME
 NGINX_CONFIG_FILE=/etc/nginx/conf.d/ssl.conf
+ACME_COMMAND=/root/.acme.sh/acme.sh
+
 
 echo "DOMAIN_NAME (Not subdomain): $DOMAIN_NAME"
 echo "CERT_DIRECTORY: $CERT_DIRECTORY"
 echo "NGINX_CONFIG_FILE: $CERT_DIRECTORY"
 
-if ! command -v acme.sh
+if [! -f $ACME_COMMAND]
 then
     echo "GOING to setup acme.sh"
     # curl https://get.acme.sh | sh
@@ -32,11 +34,11 @@ source .ssl_acme.env
 
 echo "ACME is configured!"
 
-/root/.acme.sh/acme.sh --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf -k ec-384 
+$ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf -k ec-384 
 
 mkdir -p $CERT_DIRECTORY
 
-/root/.acme.sh/acme.sh --install-cert -d $DOMAIN_NAME --ecc \
+$ACME_COMMAND --install-cert -d $DOMAIN_NAME --ecc \
 --cert-file $CERT_DIRECTORY/cert.pem \
 --key-file $CERT_DIRECTORY/key.pem \
 --fullchain-file $CERT_DIRECTORY/fullchain.pem \
