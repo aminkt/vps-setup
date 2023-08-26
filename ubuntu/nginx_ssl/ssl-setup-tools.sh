@@ -1,6 +1,4 @@
 #! /bin/bash
-
-
 DOMAIN_NAME=$1
 CERT_DIRECTORY=/etc/nginx/letsencrypt/live/$DOMAIN_NAME
 NGINX_CONFIG_FILE=/etc/nginx/conf.d/ssl.conf
@@ -11,7 +9,8 @@ echo "NGINX_CONFIG_FILE: $CERT_DIRECTORY"
 
 if ! command -v acme.sh &> /dev/null
 then
-    curl https://get.acme.sh | sh
+    echo "GOING to setup acme.sh"
+    # curl https://get.acme.sh | sh
     exit
 fi
 
