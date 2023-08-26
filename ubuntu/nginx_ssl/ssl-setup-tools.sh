@@ -33,7 +33,7 @@ fi
 if [ ! -f .ssl_acme.env ]
 then
 read -p 'Cloadflare email: ' cloadflare_email
-read -s 'Cloadflare apiKey: ' cloadflare_key
+read -p 'Cloadflare apiKey: ' cloadflare_key
 
 cat << EOF > .ssl_acme.env
 CLOAD_FLARE_KEY=$cloadflare_key
