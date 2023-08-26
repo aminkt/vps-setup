@@ -49,13 +49,14 @@ source .ssl_acme.env
 
 echo "Cloadflare api key IS $CF_Key"
 
+$ACME_COMMAND --set-default-ca --server letsencrypt
 echo "ACME is configured!"
 
-$ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf -k ec-384 
+$ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf --debug
 
 mkdir -p $CERT_DIRECTORY
 
-$ACME_COMMAND --install-cert -d $DOMAIN_NAME --ecc \
+$ACME_COMMAND --install-cert -d $DOMAIN_NAME \
 --cert-file $CERT_DIRECTORY/cert.pem \
 --key-file $CERT_DIRECTORY/key.pem \
 --fullchain-file $CERT_DIRECTORY/fullchain.pem \
