@@ -43,11 +43,13 @@ fi
 
 source .ssl_acme.env
 
-export CF_Key=${CLOAD_FLARE_KEY}
+export CF_Token=${CLOAD_FLARE_KEY}
 export CF_Email=${CLOAD_FLARE_EMAIL}
 
+curl -X GET "https://api.cloudflare.com/client/v4/zones"  -H "Authorization: Bearer $CF_Token"
+
 echo "Cloadflare mail IS $CF_EMail"
-echo "Cloadflare api key IS $CF_Key"
+echo "Cloadflare api key IS $CF_Token"
 
 $ACME_COMMAND --set-default-ca --server letsencrypt
 echo "ACME is configured!"
@@ -73,3 +75,5 @@ EOF
 
 echo "SSL is configured"
 crontab -l
+
+acme.sh --issue -d foodayapp.ir -d *.foodayapp.ir  --dns dns_cf --debug
