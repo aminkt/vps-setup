@@ -13,6 +13,7 @@ if [! -f $ACME_COMMAND]
 then
     echo "GOING to setup acme.sh"
     # curl https://get.acme.sh | sh
+    rm -rf master.tar.gz acme.sh-master
     exit
 fi
 
