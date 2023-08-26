@@ -19,9 +19,15 @@ echo "NGINX_CONFIG_FILE: $NGINX_CONFIG_FILE"
 if [ ! -f $ACME_COMMAND ]
 then
     echo "GOING to setup acme.sh"
-    # curl https://get.acme.sh | sh
+    read -p 'ACME script email: ' acme_email
+    if [ -z "$acme_email" ]
+    then
+        "ACME email is rquired."
+        exit
+    fi
+    curl https://get.acme.sh | sh -s email=$acme_email
     rm -rf master.tar.gz acme.sh-master
-    exit
+    # exit
 fi
 
 if [ ! -f .ssl_acme.env ]
