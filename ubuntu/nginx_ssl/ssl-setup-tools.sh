@@ -8,7 +8,7 @@ fi
 
 DOMAIN_NAME=$1
 CERT_DIRECTORY=/etc/nginx/letsencrypt/live/$DOMAIN_NAME
-NGINX_CONFIG_FILE=/etc/nginx/conf.d/ssl.conf
+NGINX_CONFIG_FILE=/etc/nginx/letsencrypt/ssl.conf
 ACME_COMMAND=/root/.acme.sh/acme.sh
 
 
@@ -46,7 +46,7 @@ source .ssl_acme.env
 export CF_Token=${CLOAD_FLARE_KEY}
 export CF_Email=${CLOAD_FLARE_EMAIL}
 
-curl -X GET "https://api.cloudflare.com/client/v4/zones"  -H "Authorization: Bearer $CF_Token"
+curl -X GET "https://api.cloudflare.com/client/v4/zones"  -H "Authorization: Bearer $CF_Token" | jq
 
 echo "Cloadflare mail IS $CF_EMail"
 echo "Cloadflare api key IS $CF_Token"
@@ -75,5 +75,3 @@ EOF
 
 echo "SSL is configured"
 crontab -l
-
-acme.sh --issue -d foodayapp.ir -d *.foodayapp.ir  --dns dns_cf --debug
