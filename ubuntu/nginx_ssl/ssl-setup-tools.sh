@@ -7,7 +7,7 @@ ACME_COMMAND=/root/.acme.sh/acme.sh
 
 echo "DOMAIN_NAME (Not subdomain): $DOMAIN_NAME"
 echo "CERT_DIRECTORY: $CERT_DIRECTORY"
-echo "NGINX_CONFIG_FILE: $CERT_DIRECTORY"
+echo "NGINX_CONFIG_FILE: $NGINX_CONFIG_FILE"
 
 if [! -f $ACME_COMMAND]
 then
