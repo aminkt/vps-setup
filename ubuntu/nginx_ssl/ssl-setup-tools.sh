@@ -7,7 +7,7 @@ echo "DOMAIN_NAME (Not subdomain): $DOMAIN_NAME"
 echo "CERT_DIRECTORY: $CERT_DIRECTORY"
 echo "NGINX_CONFIG_FILE: $CERT_DIRECTORY"
 
-if ! command -v acme.sh &> /dev/null
+if ! command -v acme.sh
 then
     echo "GOING to setup acme.sh"
     # curl https://get.acme.sh | sh
