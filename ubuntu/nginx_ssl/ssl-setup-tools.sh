@@ -8,7 +8,7 @@ fi
 
 DOMAIN_NAME=$1
 CERT_DIRECTORY=/etc/nginx/letsencrypt/live/$DOMAIN_NAME
-NGINX_CONFIG_FILE=/etc/nginx/letsencrypt/ssl.conf
+NGINX_CONFIG_FILE=/etc/nginx/letsencrypt/ssl.$DOMAIN_NAME.conf
 ACME_COMMAND=/root/.acme.sh/acme.sh
 
 
