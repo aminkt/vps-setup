@@ -54,7 +54,12 @@ echo "Cloadflare api key IS $CF_Token"
 $ACME_COMMAND --set-default-ca --server letsencrypt
 echo "ACME is configured!"
 
-$ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME  --dns dns_cf --debug 2 --force
+if $ACME_COMMAND --issue -d $DOMAIN_NAME -d *.$DOMAIN_NAME --dns dns_cf --debug 2 --force; then
+    echo "Certificates issued successfully!"
+else
+    echo "Failed to issue certificates. Check DNS and Cloudflare credentials."
+    exit 1
+fi
 
 mkdir -p $CERT_DIRECTORY
 
